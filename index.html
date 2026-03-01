@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -24,7 +23,7 @@
 
     <main class="card">
       <p class="tag">Vaporwave Social Hub</p>
-      <h1>abel22</h1>
+      <h1 class="glitch" data-text="abel22">abel22</h1>
       <p class="subtitle">Me encontra nas plataformas abaixo ✦</p>
 
       <nav class="links" aria-label="Redes sociais">
@@ -49,8 +48,13 @@
         </a>
       </nav>
 
-      <p class="tip">Perfis configurados para abel22 ✦</p>
+      <div class="music-controls">
+        <p class="tip">Tocando: <strong>Crime Pays – Freddie Gibbs</strong> (auto-play pode ser bloqueado pelo navegador).</p>
+        <button id="playMusicBtn" class="play-btn" type="button">▶️ Tocar música</button>
+      </div>
     </main>
+
+    <audio id="bgMusic" loop preload="auto" src="https://archive.org/download/freddie-gibbs-crime-pays/Freddie%20Gibbs%20-%20Crime%20Pays.mp3"></audio>
 
     <script src="script.js"></script>
   </body>
