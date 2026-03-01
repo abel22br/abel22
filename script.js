@@ -8,6 +8,37 @@ document.body.append(cursor, cursorDot);
 
 window.addEventListener('mousemove', (event) => {
   const { clientX, clientY } = event;
-  cursor.style.transform = `translate(${clientX - 16}px, ${clientY - 16}px)`;
-  cursorDot.style.transform = `translate(${clientX - 4}px, ${clientY - 4}px)`;
+  cursor.style.left = `${clientX}px`;
+  cursor.style.top = `${clientY}px`;
+  cursorDot.style.left = `${clientX}px`;
+  cursorDot.style.top = `${clientY}px`;
+});
+
+const bgMusic = document.getElementById('bgMusic');
+const playMusicBtn = document.getElementById('playMusicBtn');
+
+const updateMusicButton = (isPlaying) => {
+  playMusicBtn.textContent = isPlaying ? '⏸️ Pausar música' : '▶️ Tocar música';
+};
+
+const tryAutoPlay = async () => {
+  try {
+    await bgMusic.play();
+    updateMusicButton(true);
+  } catch {
+    updateMusicButton(false);
+  }
+};
+
+tryAutoPlay();
+
+playMusicBtn.addEventListener('click', async () => {
+  if (bgMusic.paused) {
+    await bgMusic.play();
+    updateMusicButton(true);
+    return;
+  }
+
+  bgMusic.pause();
+  updateMusicButton(false);
 });
