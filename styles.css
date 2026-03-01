@@ -1,33 +1,3 @@
-:root {
-  --pink: #ff4fd8;
-  --cyan: #59f5ff;
-  --violet: #8f6bff;
-  --bg: #090014;
-  --glass: rgba(12, 9, 30, 0.72);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  min-height: 100%;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  color: #f5edff;
-  background-color: var(--bg);
-  background-image: url('https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: grid;
-  place-items: center;
-  padding: 1.25rem;
-  cursor: none;
 }
 
 .bg-overlay {
@@ -53,7 +23,7 @@ body {
     0 0 40px rgba(255, 79, 216, 0.2),
     inset 0 0 20px rgba(255, 255, 255, 0.06);
   text-align: center;
-  animation: pulse 5s ease-in-out infinite;
+  animation: floatCard 5s ease-in-out infinite;
 }
 
 .tag {
@@ -69,10 +39,37 @@ h1 {
   font-size: clamp(1.3rem, 5vw, 2.4rem);
   font-family: 'Press Start 2P', cursive;
   color: #fff;
+}
+
+.glitch {
+  position: relative;
   text-shadow:
     0 0 8px var(--pink),
     0 0 20px var(--pink),
     0 0 32px var(--violet);
+  animation: namePulse 2.8s ease-in-out infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: var(--cyan);
+  transform: translate(-2px, 0);
+  clip-path: polygon(0 0, 100% 0, 100% 38%, 0 38%);
+  animation: glitchShift 2.3s infinite steps(1, end);
+}
+
+.glitch::after {
+  color: var(--pink);
+  transform: translate(2px, 0);
+  clip-path: polygon(0 62%, 100% 62%, 100% 100%, 0 100%);
+  animation: glitchShift 1.9s infinite steps(1, end) reverse;
 }
 
 .subtitle {
@@ -98,17 +95,7 @@ h1 {
   flex-direction: column;
   gap: 0.5rem;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.icon-link i {
-  font-size: 1.75rem;
-}
-
-.icon-link span {
-  font-size: 0.92rem;
-  font-weight: 600;
-}
+@@ -112,111 +139,163 @@ h1 {
 
 .icon-link:hover,
 .icon-link:focus-visible {
@@ -134,13 +121,33 @@ h1 {
   color: #93ecff;
 }
 
-.tip {
-  margin-top: 1.4rem;
-  font-size: 0.88rem;
-  opacity: 0.78;
+.music-controls {
+  margin-top: 1.2rem;
 }
 
-@keyframes pulse {
+.tip {
+  margin: 0 0 0.8rem;
+  font-size: 0.88rem;
+  opacity: 0.84;
+}
+
+.play-btn {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-weight: 600;
+}
+
+.play-btn:hover,
+.play-btn:focus-visible {
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px rgba(89, 245, 255, 0.5);
+  outline: none;
+}
+
+@keyframes floatCard {
   0%,
   100% {
     transform: translateY(0);
@@ -150,12 +157,40 @@ h1 {
   }
 }
 
+@keyframes namePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes glitchShift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    transform: translate(2px, -1px);
+  }
+  60% {
+    transform: translate(-1px, 0);
+  }
+  80% {
+    transform: translate(1px, 1px);
+  }
+}
+
 @media (max-width: 520px) {
   .links {
     grid-template-columns: 1fr 1fr;
   }
 }
-
 
 a,
 button {
@@ -167,6 +202,8 @@ button {
   position: fixed;
   pointer-events: none;
   z-index: 9999;
+  left: 0;
+  top: 0;
 }
 
 .target-cursor {
@@ -175,6 +212,7 @@ button {
   border: 2px solid rgba(89, 245, 255, 0.95);
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(89, 245, 255, 0.8);
+  transform: translate(-50%, -50%);
 }
 
 .target-cursor::before,
@@ -206,6 +244,7 @@ button {
   border-radius: 50%;
   background: var(--pink);
   box-shadow: 0 0 12px var(--pink);
+  transform: translate(-50%, -50%);
 }
 
 @media (hover: none), (pointer: coarse) {
