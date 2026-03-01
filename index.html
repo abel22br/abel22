@@ -1,61 +1,50 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meu Portal Vaporwave</title>
+    <title>abel22 • vaporwave hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW0zOxg+G6W4fR9gTH5fYB8f5R8i8LwR5iLx0QkC2v0tw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="bg-overlay"></div>
 
     <main class="card">
-      <p class="tag">Vaporwave Social Hub</p>
+      <p class="tag">VAPORWAVE SOCIAL HUB</p>
       <h1 class="glitch" data-text="abel22">abel22</h1>
       <p class="subtitle">Me encontra nas plataformas abaixo ✦</p>
 
       <nav class="links" aria-label="Redes sociais">
         <a class="icon-link roblox" href="https://www.roblox.com/users/profile?username=abelbr22" target="_blank" rel="noopener noreferrer" aria-label="Roblox">
-          <i class="fa-solid fa-cube"></i>
+          <span class="emoji">🧊</span>
           <span>Roblox</span>
         </a>
-
         <a class="icon-link discord" href="https://discord.com/users/abel22" target="_blank" rel="noopener noreferrer" aria-label="Discord">
-          <i class="fa-brands fa-discord"></i>
+          <span class="emoji">💬</span>
           <span>Discord</span>
         </a>
-
         <a class="icon-link instagram" href="https://www.instagram.com/abel_blocked" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <i class="fa-brands fa-instagram"></i>
+          <span class="emoji">📸</span>
           <span>Instagram</span>
         </a>
-
         <a class="icon-link x" href="https://x.com/abelzao" target="_blank" rel="noopener noreferrer" aria-label="X/Twitter">
-          <i class="fa-brands fa-x-twitter"></i>
+          <span class="emoji">🐦</span>
           <span>X / Twitter</span>
         </a>
       </nav>
 
       <div class="music-controls">
-        <p class="tip">Tocando: <strong>Crime Pays – Freddie Gibbs</strong> (auto-play pode ser bloqueado pelo navegador).</p>
+        <p class="tip">
+          Música ligada por padrão. <strong>Obs:</strong> navegadores podem bloquear autoplay até o primeiro clique.
+        </p>
         <button id="playMusicBtn" class="play-btn" type="button">▶️ Tocar música</button>
       </div>
     </main>
 
-    <audio id="bgMusic" loop preload="auto" src="https://archive.org/download/freddie-gibbs-crime-pays/Freddie%20Gibbs%20-%20Crime%20Pays.mp3"></audio>
-
+    <audio id="bgMusic" loop preload="auto" src="assets/vaporwave-loop.wav"></audio>
     <script src="script.js"></script>
   </body>
 </html>
