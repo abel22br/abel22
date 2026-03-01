@@ -1,3 +1,8 @@
+const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+if (isFinePointer) {
+  document.body.classList.add('custom-cursor');
+}
+
 const cursor = document.createElement('div');
 cursor.className = 'target-cursor';
 
@@ -6,12 +11,17 @@ cursorDot.className = 'target-dot';
 
 document.body.append(cursor, cursorDot);
 
+const moveCursor = (x, y) => {
+  cursor.style.left = `${x}px`;
+  cursor.style.top = `${y}px`;
+  cursorDot.style.left = `${x}px`;
+  cursorDot.style.top = `${y}px`;
+};
+
+moveCursor(window.innerWidth / 2, window.innerHeight / 2);
+
 window.addEventListener('mousemove', (event) => {
-  const { clientX, clientY } = event;
-  cursor.style.left = `${clientX}px`;
-  cursor.style.top = `${clientY}px`;
-  cursorDot.style.left = `${clientX}px`;
-  cursorDot.style.top = `${clientY}px`;
+  moveCursor(event.clientX, event.clientY);
 });
 
 const bgMusic = document.getElementById('bgMusic');
@@ -21,7 +31,7 @@ const updateMusicButton = (isPlaying) => {
   playMusicBtn.textContent = isPlaying ? '⏸️ Pausar música' : '▶️ Tocar música';
 };
 
-const tryAutoPlay = async () => {
+const safePlay = async () => {
   try {
     await bgMusic.play();
     updateMusicButton(true);
@@ -30,12 +40,11 @@ const tryAutoPlay = async () => {
   }
 };
 
-tryAutoPlay();
+safePlay();
 
 playMusicBtn.addEventListener('click', async () => {
   if (bgMusic.paused) {
-    await bgMusic.play();
-    updateMusicButton(true);
+    await safePlay();
     return;
   }
 
